@@ -3,19 +3,83 @@ import java.util.Scanner;
 class Employee
 {
 	/* Task 3B: Add instance variables */
-  
+	public String firstName;
+	public String lastName;
+	public int employeeId;
+	public double salary;
    
 	/* Task 3C: Add three constructors */
-   
-   
-	/* Task 3D: Add set (mutator) and get (accessor) meethods
+	public Employee()
+	{
 
+	}
+	public Employee(String last, String first)
+	{
+		this.lastName = last;
+		this.firstName = first;
+	}
+	public Employee(String last, String first, int id, double wage)
+	{
+		this.lastName = last;
+		this.firstName = first;
+		this.employeeId = id;
+		this.salary = wage;
+	}
+   
+	/* Task 3D: Add set (mutator) and get (accessor) meethods */
+	public String getLastName()
+	{
+		return this.lastName;
+	}
+	public String getFirstName()
+	{
+		return this.firstName;
+	}
+	public int getEmployeeId()
+	{
+		return this.employeeId;
+	}
+	public double getSalary()
+	{
+		return this.salary;
+	}
+	public void setLastName(String newEntry)
+	{
+		this.lastName = newEntry;
+	}
+	public void setFirstName(String newEntry)
+	{
+		this.firstName = newEntry;
+	}
+	public void setEmployeeId(int newEntry)
+	{
+		this.employeeId = newEntry;
+	}
+	public void setSalary(double newEntry)
+	{
+		this.salary = newEntry;
+	}
    
 	/* Task 3F: Add toString method */
-   
+	public String toString()
+	{
+		String output = this.lastName + ", " + this.firstName + "\n	ID Number: " + this.employeeId + "\n	Salary: $" + this.salary;
+		return output;
+	}
+
    
 	/* Task 3G: Add equals method */
-   
+   public Boolean equals(String name)
+   {
+		if(this.lastName.equalsIgnoreCase(name))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+   }
 }
 
 
@@ -60,7 +124,18 @@ public class EmployeeApp
                 
 						// Task 3E: Prompt for user information and set the object 
 						// parameters via the mutator methods
-
+						System.out.println("What is the Employee's last name? ");
+						inputString = keyboard.nextLine();
+						employees[empCount].setLastName(inputString);
+						System.out.println("What is the Employee's first name? ");
+						inputString = keyboard.nextLine();
+						employees[empCount].setFirstName(inputString);
+						System.out.println("What is the Employee's Id? ");
+						inputInt = keyboard.nextInt();
+						employees[empCount].setEmployeeId(inputInt);
+						System.out.println("What is the Employee's salary? ");
+						inputDouble = keyboard.nextDouble();
+						employees[empCount].setSalary(inputDouble);
    
 						empCount++;
 					}
@@ -75,7 +150,7 @@ public class EmployeeApp
 						// Verify that the employee entry has been allocated before Editing
 						if ( employees[lp] != null )
 						{
-							if ( employees[lp].equals( inputString ) == true )
+							if ( employees[lp].equals(inputString))
 							{
 								System.out.print( "Enter Employee ID    : " );
 								inputInt = keyboard.nextInt();
@@ -87,6 +162,7 @@ public class EmployeeApp
    
 								keyboard.nextLine();
 							}
+							
 						}
 					}
 				break;
@@ -94,7 +170,15 @@ public class EmployeeApp
 				case 'L':
 					for ( int lp=0; lp<MAX_EMPLOYEES; lp++ )
 					{
-						System.out.println( employees[lp] );
+						if(employees[lp] == null)
+						{
+							System.out.println(employees[lp]);
+						}
+						else
+						{
+							System.out.println( employees[lp].toString() );
+						}
+						
 					}
 				break;
 			}
